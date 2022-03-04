@@ -1,0 +1,45 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{url_for('static', filename='/img/5.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Register</h1>
+            <span class="subheading">Start Contributing to the Blog!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+       
+       {{ wtf.quick_form(form, novalidate=True, button_map={"register": "primary"}) }}
+        <p><strong>Declaration:</strong> By registering into this blog website the user fully understands and explicitly agrees to the following: </p>
+          <p> - that he/she will not post or comment any content that is copy rights protected by any entity, provocative or objectionable or
+            disrespectful or hurting the sentiments of a particular group, individual, entity or nation, particularly on matters
+            related to sex, hatred, religion and politics.</p>
+          <p> - that he/ she will not to resort to any unethical, immoral or socially unacceptable actions or behaviour on this
+              platform. </p>
+          <p> - that he/ she is fully accountable and undertakes full responsibility for any type of legal action by any individuals or
+              entities, arising out of the posts/contents made by the user, within the applicable legal frameworks.</p>
+          <p> - that the posts and comments posted on this website belong to registered users who have posted them,
+          and the website or its creator/ administrator/ owner is not responsible for any of these content, in any way,
+              including the back-up and safe-keep of the same. </p>
+          <p> - that he/ she also acknowledges that the creator/ administrator/ owner of this website reserves full rights on, including but not
+              limited to, the functionality, functioning, user access, display of the content, determining the suitability for display
+              of the content that is posted by the user.</p>
+          <strong>The creator/ administrator/ owner of this website is not obliged or responsible to the user, his/her posts or comments
+              or to any other entity in any way, unless it is explicitly stated and agreed to.</strong>
+      </div>
+    </div>
+  </div>
+
+{% include "footer.html" %}

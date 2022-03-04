@@ -1,0 +1,34 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='img/2-1.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About This Blog Site</h1>
+            <span class="subheading">A brief background on BizBeamers..</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Bizbeamers are a small group of close friends, who have completed their MBAs (1990-1992) from <a href="https://svuniversity.edu.in/departments_cmcs/business-management">School of Business Management, SV University, Tirupati, Andhra Pradesh, India.</a></p>
+        <p>These friends, since then, though have moved out with their own respective lives, pursuing their own careers in diverse fields in different parts of the world, maintained their friendship bond close and intact, thanks to technology, primarily the all pervasive day-to-day Whatsapp conversations.</p>
+        <img src = {{url_for('static', filename='img/Bizbeamers.jpg')}} style="width:100%">
+        <p>Each of these ever jovial soul possesses 50+ years of valued individual practical insights into life and about 30 years of varied professional insights. </p>
+        <p> Each of the group members is unique with his own chivalrous personality and dynamism. Each one is seasoned with a blend of exceptional skills and talents in his own areas of expertise. All the members are blessed with happy and equally talented and spirited families and circles of friends.</p>
+        <p> This blog site is created as a platform for the Bizbeamers and their families and friends, to express themselves and share their thoughts, feelings, experiences, insights and emotions on topics that are close to their hearts.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  {% include "footer.html" %}

@@ -1,0 +1,61 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{url_for('static', filename='/img/1.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Bizbeamers</h1>
+            {% if current_user.is_authenticated: %}
+            <span class="subheading">Welcome, {{current_user.name}}!</span>
+            {% else: %}
+            <span class="subheading">a blog site for Bizbeamers & their families and friends.</span>
+             {% endif %}
+         </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for post in all_posts %}
+        <div class="post-preview">
+          <a href="{{ url_for('show_post', post_id=post.id) }}">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{post.subtitle}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="https://valmetisrinivas.github.io/V.Srinivas/">{{post.author.name}}</a>
+            on {{post.date}}
+
+            {% if current_user.id == 1: %}
+            <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
+            {% endif %}
+
+          </p>
+        </div>
+        <hr>
+        {% endfor %}
+
+
+        <!-- New Post -->
+
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <hr>
+
+{% include "footer.html" %}
