@@ -11,15 +11,16 @@ from flask_gravatar import Gravatar
 from functools import wraps
 from markupsafe import escape
 import smtplib
+import os
 
 my_mail_id = "sreeeeeeenivas@gmail.com"
-password = "Veesu00g*m4python"
+password = os.environ.get("MY_PW")
 frm = "sreeeeeeenivas@gmail.com"
-
+my_key = os.environ.get("MY_KEY")
 c_year = datetime.today().year
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = my_key
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -255,5 +256,5 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    # app.run(host='0.0.0.0', port=5000)
-    app.run(host='localhost', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
+    # app.run(host='localhost', port=5000, debug=True)
