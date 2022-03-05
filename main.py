@@ -24,11 +24,6 @@ app.config['SECRET_KEY'] = my_key
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
-##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
 gravatar = Gravatar(app,
                     size=100,
                     rating='g',
@@ -37,6 +32,14 @@ gravatar = Gravatar(app,
                     force_lower=False,
                     use_ssl=False,
                     base_url=None)
+
+##CONNECT TO DB
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 ##CONFIGURE TABLES
 
@@ -89,9 +92,6 @@ class Comment(db.Model):
     parent_post = relationship("BlogPost", back_populates="comments")
 
 # db.create_all()
-
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 @app.route('/')
 def get_all_posts():
@@ -256,5 +256,5 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
-    # app.run(host='localhost', port=5000, debug=True)
+    # app.run(host='0.0.0.0', port=5000)
+    app.run(host='localhost', port=5000, debug=True)
