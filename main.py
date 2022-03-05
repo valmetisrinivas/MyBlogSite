@@ -41,6 +41,11 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 ##CONFIGURE TABLES
 
 class BlogPost(db.Model):
@@ -91,12 +96,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     parent_post = relationship("BlogPost", back_populates="comments")
 
-# db.create_all()
-
-@app.route('/')
-def get_all_posts():
-    posts = BlogPost.query.all()
-    return render_template("index.html", all_posts=posts, current_user=current_user, current_year=c_year)
+db.create_all()
 
 
 def admin_only(f):
@@ -106,6 +106,11 @@ def admin_only(f):
             return abort(403)
         return f(*args, **kwargs)
     return decorated_function
+
+@app.route('/')
+def get_all_posts():
+    posts = BlogPost.query.all()
+    return render_template("index.html", all_posts=posts, current_user=current_user, current_year=c_year)
 
 
 @app.route('/register', methods= ["GET", "POST"])
@@ -126,11 +131,6 @@ def register():
             login_user(new_user)
             return redirect(url_for("get_all_posts"))
     return render_template("register.html", form=r_form, current_user=current_user, current_year=c_year)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 @app.route('/login', methods=["GET", "POST"])
